@@ -2,6 +2,8 @@ import ast
 import sys
 from _ast import AST
 
+excluded = []
+
 
 def change_case(name: str):
     res = [name[0]]
@@ -16,7 +18,7 @@ def change_case(name: str):
 class MyTransformer(ast.NodeTransformer):
     def generic_visit(self, node):
         for field, old_value in ast.iter_fields(node):
-            if field == "id":
+            if field == "id" and node.id not in excluded:
                 node.id = change_case(node.id)
             elif field == "name":
                 node.name = change_case(node.name)
@@ -42,6 +44,7 @@ class MyTransformer(ast.NodeTransformer):
         return node
 
     def visit_ClassDef(self, node):
+        excluded.append(node.name)
         for value in node.body:
             if isinstance(value, AST):
                 self.visit(value)

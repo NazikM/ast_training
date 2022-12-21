@@ -10,3 +10,8 @@ def foo_function():
 
         def test_method(self):
             pass
+    ku = de_fee
+    TestClass()
+
+    class Test2(TestClass):
+        pass

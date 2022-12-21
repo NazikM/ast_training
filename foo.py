@@ -12,3 +12,9 @@ def fooFunction():
         def testMethod(self):
             pass
 
+    ku = deFee
+
+    TestClass()
+
+    class Test2(TestClass):
+        pass
